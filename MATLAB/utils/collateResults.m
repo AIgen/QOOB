@@ -53,7 +53,7 @@ function Results = collateResults(varargin)
     fileID = fopen(outFile,'w');
     dataDisp = zeros(numel(confMethods), numel(fieldnames(Results.(confMethods{1}))) - 1);
     fields = fieldnames(Results.(confMethods{1}));
-    fprintf(fileID, 'Method        Coverage  Var(<--)    Length   Var(<--)\n');
+    fprintf(fileID, 'Method        Coverage  Var(<--)    Width    Var(<--)\n');
     fieldsOutput = pad(confMethods, 14);
     
     for j = 1:numel(confMethods)
