@@ -1,5 +1,5 @@
 function [intervals, coverage] = OOB_crossConformal(XTrain, YTrain, XTest, YTest, nTrees, alpha)
-    fprintf("Running OOB-CC with nTrees = %d, alpha = %d.\n", nTrees, alpha);
+    fprintf("Running OOB-CC with nTrees = %d.\n", nTrees, alpha);
     NTrain = size(XTrain, 1); 
     NTest = size(XTest, 1); 
     
