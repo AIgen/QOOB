@@ -61,9 +61,13 @@ The last method above is our novel conformal method. These methods can be called
 The main wrapper function `compareConformalMethods` is in the folder `MATLAB`. It uses the functions in the folders in the `MATLAB` directory, which are organized as follows.
 
 `methods`: QOOB and other conformal methods are defined as separate functions here.
+
 `data:` Dataset files (in separate folders) and functions to load the datasets.
+
 `dumps:` All outputs of the experiments are stored as `.mat` files here. 
+
 `results:` Collated human-readable results of experiments.  
+
 `utils:` Miscellaneous Support  routines. 
 
 ## Contribute or request 
@@ -71,9 +75,10 @@ Please email us if you wish to contribute or request content. We are currently w
 
 ## License
 QOOB is licensed under the terms of the [MIT non-commercial License](LICENSE).
-(https://github.com/yromano/cqr/blob/master/LICENSE)  file for details.
 
 ## References
 [1] [Algorithmic Learning in a Random World](https://link.springer.com/book/10.1007/b106715)
+
 [2] [Distribution-Free Predictive Inference For Regression](https://arxiv.org/abs/1604.04173)
+
 [3] [Nested conformal prediction and quantile out-of-bag ensemble methods](https://arxiv.org/abs/1910.10562)
