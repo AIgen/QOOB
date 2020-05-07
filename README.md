@@ -1,11 +1,6 @@
 
 # Quantile out-of-bag (QOOB) conformal
-Conformal inference is a distribution-free way of performing predictive inference [1, 2]. Given a distribution $P_{XY}$ over features $X$ and output regression values \(Y \in \mathbb{R}\), and a tolerance level $\alpha \leq 0.5$, conformal inference provides a technique to learn a function $C_{\alpha}: X \to 2^\mathbb{R}$ (here $2^\mathbb{R}$ referes to a subset of $\mathbb{R}$) such that 
-$$P_{XY}(Y \in C_\alpha(X)) \geq 1 - \alpha.$$
-
-The above should be read as saying that $C_\alpha(X)$ 'covers' $Y$ with probability at least $1-\alpha$. QOOB [3] is a conformal method that provides relatively short prediction sets. This repository can be used to reproduce the results contained in our paper [3]. 
-
-Both conformal inference and QOOB have primarily been developed for regression but can be extended to non-regression problems, such as classification.
+Conformal inference is a distribution-free way of performing predictive inference [1, 2]. For a description of the prediction problem that conformal solves and some standard references for conformal inference, please read Section 1 (introduction) of our paper [3]. This repository contains an implementation of our novel conformal method, QOOB [3]. Conformal inference (and QOOB) have primarily been developed for regression but can be extended to non-regression problems, such as classification.
 
 ## Usage
 Please clone the repo as:
