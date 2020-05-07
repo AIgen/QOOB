@@ -17,19 +17,13 @@ The third parameter above is the number of simulations to average over; we recom
 ### Sample output 
 Post execution, a call to `compareConformalMethods` will produce an output at `MATLAB/results/protein/table2.txt` which looks like the following: 
 	
-	Method    Coverage  Var(<--)   Width  Var(<--)
-
-	SC100      0.9181    0.0003   17.0677  0.3358
-
-	SQC100     0.9289    0.0000   14.4629  0.0006
-
-	CC100      0.9203    0.0001   16.5805  0.0201
-
-	OOBCC100   0.9203    0.0001   16.5430  0.0001
-
-	OOBNCC100  0.9310    0.0001   14.8581  0.9580
-
-	QOOB100    0.9397    0.0000   13.6483  0.9266
+	Method        Coverage  Var(<--)    Width    Var(<--)
+ 	SC100          0.9007    0.0005    16.6917    0.6942    
+ 	SQC100         0.9005    0.0006    14.1580    0.9069    
+ 	CC100          0.9054    0.0004    16.3174    0.1982    
+ 	OOBCC100       0.9043    0.0004    16.3554    0.2106    
+ 	OOBNCC100      0.9094    0.0004    14.9131    0.2588    
+ 	QOOB100        0.9134    0.0004    13.7582    0.2446   
 
 The first column represents the method; the second column represents the average mean-coverage across simulations and the third column represents the estimated variance of the mean-coverage across simulations; the fourth and fifth columns represent the average and variance of the mean-width across simulations. In our paper [3] we compare these methods on the basis of the average values for mean-width and mean-coverage. To provide a confidence for these values, we compute the empirical standard deviation of the average values as 
 
