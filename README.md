@@ -32,8 +32,10 @@ Post execution, a call to `compareConformalMethods` will produce an output at `M
 	QOOB100    0.9397    0.0000   13.6483  0.9266
 
 The first column represents the method; the second column represents the average mean-coverage across simulations and the third column represents the estimated variance of the mean-coverage across simulations; the fourth and fifth columns represent the average and variance of the mean-width across simulations. In our paper [3] we compare these methods on the basis of the average values for mean-width and mean-coverage. To provide a confidence for these values, we compute the empirical standard deviation of the average values as 
-	$$\text{Std. deviation of the average = }\sqrt{\frac{\text{Variance (from table)}}{\text{Number of simulations}}}.$$ 
-	These are the values reported in Tables 2 and 3 in the parantheses. 
+
+std-deviation of the average = (variance(from table) / number of simulations)<sup>0.5</sup>.
+	
+These are the values reported in Tables 2 and 3 in the parantheses. 
 
 ### Parameters for `compareConformalMethods`
 1. `"protein"`: The dataset name. The following datasets are bundled - protein, blog, concrete, superconductor, news or kernel. Additional datasets can be added. 
@@ -55,7 +57,7 @@ The last method above is our novel conformal method. These methods can be called
 	- JP100: Jackknife+ with 8-folds (hard-coded) and random forests (100 trees).
 	- QOOB_j100: QOOB (jackknife+) with quantile random forests (100) trees.
 	- QOOB_i100: QOOB (interval completion/convex hull) with quantile random forests (100 trees).
-	- QOOB_d100: QOOB (distributional) with quantile random forests (100) trees.
+	- QOOB_d100: QOOB (distributional) with quantile random forests (100 trees).
 
 ### Folder structure
 The main wrapper function `compareConformalMethods` is in the folder `MATLAB`. It uses the functions in the folders in the `MATLAB` directory, which are organized as follows.
