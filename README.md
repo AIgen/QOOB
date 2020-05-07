@@ -64,7 +64,7 @@ The main wrapper function `compareConformalMethods` is in the folder `MATLAB`. I
 
 `results:` Collated human-readable results of experiments.  
 
-`utils:` Miscellaneous Support  routines. 
+`utils:` Miscellaneous support  routines. 
 
 ## Contribute or request 
 Please email us if you wish to contribute or request content. We are currently working on providing an efficient implementation of QOOB in Python. 
