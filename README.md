@@ -35,7 +35,7 @@ These are the values reported in Tables 2 and 3 in the parantheses.
 1. `"protein"`: The dataset name. The following datasets are bundled - protein, blog, concrete, superconductor, news or kernel. Additional datasets can be added. 
 2. `"table2"`: The experiment name. Experimental output files are named using this value. 
 3. `100`: Number of simulations to run for each conformal method. 
-4. `0.1`: The value for $\alpha$. 
+4. `0.1`: The value for tolerance `alpha`. 
 5. `0.768`: Number of training points as a ratio of the total number of points in the dataset. 
 6. `["SC100", ... ,"QOOB100"]`: Conformal methods to compare. In each case, the uppercase alphabets defines the conformal method to use and the number after them denotes the number of trees for the random forest based base algorithm. In this case we have the following conformal methods (references and descriptions can be found in our paper [3]): 
 	
@@ -56,7 +56,7 @@ The last method above is our novel conformal method. These methods can be called
 ### Folder structure
 The main wrapper function `compareConformalMethods` is in the folder `MATLAB`. It uses the functions in the folders in the `MATLAB` directory, which are organized as follows.
 
-`methods`: QOOB and other conformal methods are defined as separate functions here.
+`methods`: QOOB and other conformal methods are defined as separate functions here. To call these separately, see the next subsection. 
 
 `data:` Dataset files (in separate folders) and functions to load the datasets.
 
@@ -66,8 +66,30 @@ The main wrapper function `compareConformalMethods` is in the folder `MATLAB`. I
 
 `utils:` Miscellaneous support  routines. 
 
+### Calling QOOB directly to produce prediction sets
+In order to perform predictive inference on your data, QOOB can be used by calling the function `QOOB` in the folder `MATLAB/methods`. We describe the input/output for QOOB in detail here. Calling other conformal methods in the folder `MATLAB/methods` is similar, but we do not describe it explicitly here. 
+
+The QOOB signature is: 
+
+	function [intervals, coverage] = QOOB(XTrain, YTrain, XTest, YTest, nTrees, alpha, lowerQuantile, upperQuantile)
+
+Each input parameter is described below: 
+1. `XTrain`: Training data features as a MATLAB matrix of dimensions `n X d`, where `n` is the number of training data-points and d is the dimension of each feature vector.
+2. `YTrain`: Training data output values as a MATLAB matrix of dimensions `n X 1`, where `n` is the number of training data-points.
+3. `XTest`: Test data features as a MATLAB matrix of dimensions `nTest X d`, where nTest is the number of test data-points and `d` is the dimension of each feature vector.
+4. `YTest`: Test data output values as a MATLAB matrix of dimensions `nTest X 1`, where `nTest` is the number of test data-points.
+5. `nTrees`: The number of trees to be learnt in the Quantile Random Forest. 
+6. `alpha`: The value for tolerance `alpha`.
+7. `lowerQuantile`: The lower nominal quantile. We recommend a default value of `2*alpha` for the `alpha` specified above.  
+8. `upperQuantile`: The upper nominal quantile. We recommend a default value of `1-2*alpha` for the `alpha` specified above. 
+
+Post execution, QOOB returns two output values: 
+1. `intervals`: The prediction intervals. This is a cell array with `nTest` cells. Each element `intervals{i}` itself is a cell array containing a list of disjoint prediction intervals that together correspond to the prediction set returned by QOOB. Thus `intervals{i}{j}` is a two-element MATLAB array containing the start and end points of the j'th prediction interval for the i'th test point. The intervals are sorted in ascending order. 
+2. `coverage`: Coverage obtained by QOOB computed as the number of times the true prediction from `YTest` belongs to the prediction interval produced by QOOB for the corresponding test-point, divided by `nTest` to make it a value in `[0, 1]`. 
+
+
 ## Contribute or request 
-Please email us if you wish to contribute or request content. We are currently working on providing an efficient implementation of QOOB in Python. 
+Please email us if you wish to contribute or request content. We are currently working on providing an efficient implementation of QOOB in Python. The QOOB signature is as follows
 
 ## License
 QOOB is licensed under the terms of the [MIT non-commercial License](LICENSE).
