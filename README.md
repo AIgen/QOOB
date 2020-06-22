@@ -91,7 +91,7 @@ Post execution, QOOB returns two output values:
 
 
 ## Contribute or request 
-Please email us if you wish to contribute or request content. We are currently working on providing an efficient implementation of QOOB in Python. The QOOB signature is as follows
+Please email us if you wish to contribute or request content. We are currently working on providing an efficient implementation of QOOB in Python.
 
 ## License
 QOOB is licensed under the terms of the [MIT non-commercial License](LICENSE).
