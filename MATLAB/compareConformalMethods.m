@@ -1,4 +1,22 @@
 function compareConformalMethods(varargin)
+    addpath(genpath('..'));
+    CORES = min(varargin{3}, str2num(getenv('SLURM_TASKS_PER_NODE')));
+    p = gcp('nocreate');
+    if(isempty(p))
+        if(isempty(CORES))
+            %%% local macbook
+            %parpool('local', 2);
+        else
+            parpool('local', CORES);
+            fprintf('Using %d cores.\n', CORES);
+        end
+    else
+        if(p.NumWorkers < CORES)
+	   parpool('local', CORES);
+           fprintf('Using %d cores.\n', CORES);
+        end 
+    end
+
     %% Arguments passed as parameters
     dataset = varargin{1}; % dataset name
     expName = varargin{2}; % a name for the experiment (for storing output files)
@@ -26,12 +44,24 @@ function compareConformalMethods(varargin)
         loadData = @loadBlogData;    		  
     elseif(dataset == "protein")
         loadData = @loadProteinData;    		   
+    elseif(dataset == "protein2")
+        loadData = @loadProtein2Data;    		   
     elseif(dataset == "superconductor")
         loadData = @loadSuperconductorData;    		   
     elseif(dataset == "news")
         loadData = @loadNewsData;    		   
     elseif(dataset == "kernel")
         loadData = @loadKernelData;    		   
+    elseif(dataset == "electric")
+        loadData = @loadElectricData;    		   
+    elseif(dataset == "wineWhite")
+        loadData = @loadWineWhiteData;    		   
+    elseif(dataset == "wineRed")
+        loadData = @loadWineRedData;    		   
+    elseif(dataset == "airfoil")
+        loadData = @loadAirfoilData;    		   
+    elseif(dataset == "cycle")
+        loadData = @loadCycleData;    		   
     end
 
     %% Initialize Result Containers
@@ -40,7 +70,7 @@ function compareConformalMethods(varargin)
     Coverage = cell(numExp,1); 
     
     %% Perform experiment
-    for expNumber = 1:numExp
+    parfor expNumber = 1:numExp
     	[X, Y] = loadData(); 
         [XTrain, YTrain, XTest, YTest] = createSplit(X, Y, nTrainFrac); 
 
