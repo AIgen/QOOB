@@ -2,7 +2,7 @@
 # Quantile out-of-bag (QOOB) conformal
 Conformal inference is a distribution-free way of performing predictive inference [1, 2]. For a description of the prediction problem that conformal solves and some standard references for conformal inference, read Section 1 (introduction) of our paper [3]. This repository contains an implementation of our novel conformal method, QOOB [3] and other baseline conformal methods. Conformal inference (and QOOB) have primarily been developed for regression but can be extended to non-regression problems, such as classification.
 
-We first describe how to setup the repo and reproduce results that compare QOOB to other baseline conformal methods (on 11 UCI datasets). If you wish to use QOOB to produce prediction sets for your regression problem, instructions for doing so are outlined near the end of this README in a subsection titled `Calling QOOB directly to produce prediction sets`. 
+We first describe how to set up the repo and reproduce results from our paper to compare QOOB to other conformal methods (on 11 UCI datasets). If you wish to use QOOB to produce prediction sets for your regression problem, instructions for doing so are outlined near the end of this README in a subsection titled `Calling QOOB directly to produce prediction sets`. 
 
 ## Usage
 Clone the repo as:
@@ -31,7 +31,7 @@ The first column represents the method; the second column represents the average
 
 std-deviation of the average = (variance(from table) / number of simulations)<sup>0.5</sup>.
 	
-These are the values reported in Tables 2 and 3 in the parantheses. 
+These are the values reported in the parantheses in Tables 2, 3, 7, and 8 in the paper. 
 
 ### Parameters for `compareConformalMethods`
 1. `"protein"`: The dataset name. The following datasets are bundled - protein, blog, concrete, superconductor, news, kernel, protein2, electric, cycle, wineRed, wineWhite, airfoil. Additional datasets can be added. 
