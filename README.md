@@ -1,17 +1,17 @@
 
 # Quantile out-of-bag (QOOB) conformal
-Conformal inference is a distribution-free way of performing predictive inference [1, 2]. For a description of the prediction problem that conformal solves and some standard references for conformal inference, please read Section 1 (introduction) of our paper [3]. This repository contains an implementation of our novel conformal method, QOOB [3] and other baseline conformal methods. Conformal inference (and QOOB) have primarily been developed for regression but can be extended to non-regression problems, such as classification.
+Conformal inference is a distribution-free way of performing predictive inference [1, 2]. For a description of the prediction problem that conformal solves and some standard references for conformal inference, read Section 1 (introduction) of our paper [3]. This repository contains an implementation of our novel conformal method, QOOB [3] and other baseline conformal methods. Conformal inference (and QOOB) have primarily been developed for regression but can be extended to non-regression problems, such as classification.
 
-We first describe how to setup the repo and reproduce some of the results in our paper that compare QOOB to other baseline conformal methods. If you wish to use QOOB to produce prediction sets for your regression problem, instructions for doing so are outlined near the end of this README in a subsection titled `Calling QOOB directly to produce prediction sets`. 
+We first describe how to setup the repo and reproduce results that compare QOOB to other baseline conformal methods (on 11 UCI datasets). If you wish to use QOOB to produce prediction sets for your regression problem, instructions for doing so are outlined near the end of this README in a subsection titled `Calling QOOB directly to produce prediction sets`. 
 
 ## Usage
-Please clone the repo as:
+Clone the repo as:
 			
 	git clone https://github.com/AIgen/QOOB.git	
 
 A MATLAB implementation is required to run the code. The code was developed using MATLAB 2019b and has been tested on MATLAB 2019a. 
 
-This repository comes bundled with the 11 publicly available UCI datasets used in our paper. To reproduce the results in Table 2 and 3 of our paper [3] on the protein dataset, please call the function `compareConformalMethods` in the `MATLAB` folder with the following parameters:
+This repository comes bundled with the 11 publicly available UCI datasets used in our paper. To reproduce the results in Table 2 and 3 of our paper [3] on the protein dataset, call the function `compareConformalMethods` in the `MATLAB` folder with the following parameters:
 
 	compareConformalMethods("protein", "table2", 100, 0.1, 0.768, ["SC100", "SQC100", "CC100", "OOBCC100", "OOBNCC100", "QOOB100"]);
 The parameters are described in the parameters subsection below (however note that the third parameter is the number of simulations to average over; if you are running the experiment on a personal computer, we recommend a smaller value such as 5-10). Once the execution above completes, an output results file is produced at `MATLAB/results/protein/table2.txt`, and more detailed experimental results are dumped in `MATLAB/dumps/protein_table2.mat`. This folder structure comes pre-constructed on cloning the repository. 
@@ -76,7 +76,7 @@ The QOOB signature is:
 	function [intervals, coverage] = QOOB(XTrain, YTrain, XTest, YTest, nTrees, alpha, lowerQuantile, upperQuantile)
 
 Each input parameter is described below: 
-1. `XTrain`: Training data features as a MATLAB matrix of dimensions `n X d`, where `n` is the number of training data-points and d is the dimension of each feature vector.
+1. `XTrain`: Training data features as a MATLAB matrix of dimensions `n X d`, where `n` is the number of training data-points and d is the dimension of each feature vector. This works if the features are numeric (that is they are not nominal/categorical). If there exist nominal/categorical features, update line 8 of `MATLAB/methods/QOOB.m` to use the `CategoricalPredictors` option of the `TreeBagger` class.
 2. `YTrain`: Training data output values as a MATLAB matrix of dimensions `n X 1`, where `n` is the number of training data-points.
 3. `XTest`: Test data features as a MATLAB matrix of dimensions `nTest X d`, where nTest is the number of test data-points and `d` is the dimension of each feature vector.
 4. `YTest`: Test data output values as a MATLAB matrix of dimensions `nTest X 1`, where `nTest` is the number of test data-points.
