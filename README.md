@@ -14,7 +14,7 @@ A MATLAB implementation is required to run the code. The code was developed usin
 This repository comes bundled with the 11 publicly available UCI datasets used in our paper. To reproduce the results in Table 2 and 3 of our paper [3] on the protein dataset, please call the function `compareConformalMethods` in the `MATLAB` folder with the following parameters:
 
 	compareConformalMethods("protein", "table2", 100, 0.1, 0.768, ["SC100", "SQC100", "CC100", "OOBCC100", "OOBNCC100", "QOOB100"]);
-The parameters are described in the parameters subsection (however note that the third parameter is the number of simulations to average over; if you are running the simulation on a personal computer, we recommend a smaller value such as 5-10). Once the execution above completes, an output results file is produced at `MATLAB/results/protein/table2.txt`, and more detailed experimental results are dumped in `MATLAB/dumps/protein_table2.mat`. This folder structure comes pre-constructed on cloning the repository. 
+The parameters are described in the parameters subsection below (however note that the third parameter is the number of simulations to average over; if you are running the experiment on a personal computer, we recommend a smaller value such as 5-10). Once the execution above completes, an output results file is produced at `MATLAB/results/protein/table2.txt`, and more detailed experimental results are dumped in `MATLAB/dumps/protein_table2.mat`. This folder structure comes pre-constructed on cloning the repository. 
 
 ### Sample output 
 Post execution, a call to `compareConformalMethods` will produce an output at `MATLAB/results/protein/table2.txt` which looks like the following: 
