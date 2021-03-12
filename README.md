@@ -11,10 +11,10 @@ Please clone the repo as:
 
 A MATLAB implementation is required to run the code. The code was developed using MATLAB 2019b and has been tested on MATLAB 2019a. 
 
-This repository comes bundled with the six publicly available datasets used in our paper. To reproduce the results in Table 2 and 3 of our paper [3] on the protein dataset, please call the function `compareConformalMethods` in the `MATLAB` folder with the following parameters:
+This repository comes bundled with the 11 publicly available UCI datasets used in our paper. To reproduce the results in Table 2 and 3 of our paper [3] on the protein dataset, please call the function `compareConformalMethods` in the `MATLAB` folder with the following parameters:
 
 	compareConformalMethods("protein", "table2", 100, 0.1, 0.768, ["SC100", "SQC100", "CC100", "OOBCC100", "OOBNCC100", "QOOB100"]);
-The third parameter above is the number of simulations to average over; we recommend using a smaller value such as 5-10 on a personal computer. Once the execution above completes, an output results file is produced at `MATLAB/results/protein/table2.txt`, and more detailed experimental results are dumped in `MATLAB/dumps/protein_table2.mat`. This folder structure comes pre-constructed on cloning the repository. 
+The parameters are described in the parameters subsection (however note that the third parameter is the number of simulations to average over; if you are running the simulation on a personal computer, we recommend a smaller value such as 5-10). Once the execution above completes, an output results file is produced at `MATLAB/results/protein/table2.txt`, and more detailed experimental results are dumped in `MATLAB/dumps/protein_table2.mat`. This folder structure comes pre-constructed on cloning the repository. 
 
 ### Sample output 
 Post execution, a call to `compareConformalMethods` will produce an output at `MATLAB/results/protein/table2.txt` which looks like the following: 
@@ -34,7 +34,7 @@ std-deviation of the average = (variance(from table) / number of simulations)<su
 These are the values reported in Tables 2 and 3 in the parantheses. 
 
 ### Parameters for `compareConformalMethods`
-1. `"protein"`: The dataset name. The following datasets are bundled - protein, blog, concrete, superconductor, news or kernel. Additional datasets can be added. 
+1. `"protein"`: The dataset name. The following datasets are bundled - protein, blog, concrete, superconductor, news, kernel, protein2, electric, cycle, wineRed, wineWhite, airfoil. Additional datasets can be added. 
 2. `"table2"`: The experiment name. Experimental output files are named using this value. 
 3. `100`: Number of simulations to run for each conformal method. 
 4. `0.1`: The value for tolerance `alpha`. 
@@ -90,7 +90,7 @@ Post execution, QOOB returns two output values:
 2. `coverage`: Coverage obtained by QOOB computed as the number of times the true prediction from `YTest` belongs to the prediction interval produced by QOOB for the corresponding test-point, divided by `nTest` to make it a value in `[0, 1]`. 
 
 ### Datasets 
-This repository contains 6 datasets downloaded from the UCI repository: https://archive.ics.uci.edu/ml/index.php. More details are available in Table 5 of our paper [3]. 
+This repository contains 11 datasets downloaded from the UCI repository: https://archive.ics.uci.edu/ml/index.php. More details are available in Tables 5 and 6 of our paper [3]. 
 
 ## Contribute or request 
 Please email us if you wish to contribute or request content. We are currently working on providing an efficient implementation of QOOB in Python.
